@@ -1,0 +1,5 @@
+model Category {
+  id Int @default(autoincrement()) @id
+  name String @unique
+  products Product[]
+}
