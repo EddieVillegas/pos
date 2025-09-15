@@ -7,7 +7,8 @@ import {
   Param, 
   Delete, 
   NotFoundException, 
-  ParseIntPipe
+  ParseIntPipe,
+  Query
 } from '@nestjs/common';
 import { CategoriesService } from './categories.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
@@ -24,8 +25,10 @@ export class CategoriesController {
   }
 
   @Get()
-  findAll() {
-    return this.categoriesService.findAll();
+  findAll(
+    @Query('name') name?: string
+  ) {
+    return this.categoriesService.findAll(name);
   }
 
   @Get(':id')

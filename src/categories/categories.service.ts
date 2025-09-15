@@ -14,10 +14,13 @@ export class CategoriesService {
     })
   }
 
-  findAll() {
-    return this.prisma.category.findMany({
-      select: {id: true, name: true}
-    })
+  findAll(
+    name?: string
+  ) {
+      return this.prisma.category.findMany({
+        select: { id: true, name: true },
+        where: name ? { name }: undefined
+      })
   }
 
   async findOne(id: number) {
