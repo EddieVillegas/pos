@@ -40,4 +40,20 @@ export class CategoriesService {
     const category = await this.prisma.category.delete({where: {id}});
     return category
   }
+
+  productsByCategory(id: number){
+    return this.prisma.category.findUnique({
+      where: {
+        id
+      },
+      include: {
+        products: {
+          select: {
+            id: true,
+            name: true
+          }
+        }
+      }
+    })
+  }
 }

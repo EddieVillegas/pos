@@ -53,4 +53,11 @@ export class CategoriesController {
     const {id: categoryId} = await this.findOne(id)
     return this.categoriesService.remove(categoryId);
   }
+
+  @Get(':id/products')
+  async productsByCategory(
+    @Param('id', IdValidationPipe) id: number
+  ){
+    return this.categoriesService.productsByCategory(id)
+  }
 }
